@@ -1,0 +1,34 @@
+{% extends 'crud/base.html' %}
+{% block body %}
+    <form method="POST" action="update/{{ members.id }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="Nombre">Nombre</label>
+            <input type="text" name="Nombre" value="{{ members.Nombre}}" required="required"/>
+        </div>
+	<br>
+	<br>
+        <div class="form-group">
+            <label for="Apellido">Apellido</label>
+            <input type="text" name="Apellido" value="{{ members.Apellido }}" required="required"/>
+        </div>
+	<br>
+	<br>
+        <div class="form-group">
+            <label for="DNI">DNI</label>
+            <input type="text" name="DNI" value="{{ members.DNI }}" 
+required="required"/>
+        </div>
+	<br>
+	<br>
+        <div class="form-group">
+            <label for="Fechanac">Fechanac</label>
+            <input type="date" name="Fechanac" value="{{ members.Fechanac }}" required="required"/>
+        </div>
+        <br>
+	<br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span> Update</button>
+        </div>
+    </form>
+{% endblock %}

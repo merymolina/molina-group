@@ -1,0 +1,56 @@
+{% extends 'crud/base.html' %}
+{% block body %}
+<form class="form-inline"  action="create" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" name="Nombre" class="form-control" style="width:30%;" required="required"/>
+	<br>
+	<br>
+        <label for="Apellido">Apellido</label>
+        <input type="text" name="Apellido" class="form-control" style="width:30%;" required="required"/>
+	<br>
+	<br>
+	<label for="DNI">DNI</label>
+        <input type="text" name="DNI" class="form-control" style="width:50%;" required="required"/>
+	<br>
+	<br>
+	<label for="Fechanac">Fechanac</label>
+        <input type="date" name="Fechanac" class="form-control" style="width:50%;" required="required"/>
+        <br>
+	<br>
+        <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> ADD</button>
+    </div>
+</form>
+<br />
+<form method="GET" action="search">
+            <div class="form-inline">
+                <input type="text" placeholder="Buscar x DNI" name="search" class="form-control" style="width:21%;" required="required" /> 
+                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span>BUSCAR - DNI</button>
+           </div>
+</form>
+<br />
+	   
+<table class="table table-bordered">
+    <thead class="alert-warning">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+	    <th>DNi</th>
+	    <th>Fechanac</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.Nombre }}</td>
+            <td>{{ member.Apellido }}</td>
+	    <td>{{ member.DNI }}</td>
+	    <td>{{ member.Fechanac }}</td>
+            <td><center><a class="btn btn-sm btn-warning" href="edit/{{ member.id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span class="glyphicon glyphicon-trash"></span> Delete</a></center></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
